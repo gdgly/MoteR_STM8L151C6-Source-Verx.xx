@@ -71,13 +71,14 @@ void main(void)
     dd_set_ADF7021_Power_on();
     
     RF_test_mode();
-          
+    
+    UART_Power_ON_send();
     LED_display_page("-  ",0,0,0,0,0);   
         
     FLAG_APP_RX=1;
     dd_set_RX_mode();
     TIME_EMC=10;
-    //dd_set_TX_mode();
+    DSW_switch_last=0xff;
   while (1)
   {
     ClearWDT(); // Service the WDT
@@ -89,6 +90,7 @@ void main(void)
     UART_Handler();
     Receiver_OUT_change_UART();
     Key_scan();
+    DSW_switch_R_L();
     
     if((RAM_rssi_AVG>=60)||(FG_Receiver_LED_RX==1))Receiver_LED_RX=1;   //26   35
     else if((RAM_rssi_AVG<=59)&&(FG_Receiver_LED_RX==0))Receiver_LED_RX=0;  //25  34

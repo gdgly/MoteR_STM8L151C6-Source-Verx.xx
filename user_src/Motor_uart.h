@@ -11,3 +11,5 @@ void UART_Handler(void);
 void Receiver_OUT_change_UART(void);
 void UART_send_Receiver_OUT(void);
 void UART_ack(unsigned char ch);
+void UART_send_Motor(UINT16 d_COM,UINT8 d_addr,UINT8 d_length,UINT8 *d_data);
+void UART_Power_ON_send(void);

@@ -9,3 +9,4 @@
 
 
 void Key_scan(void);
+void DSW_switch_R_L(void);

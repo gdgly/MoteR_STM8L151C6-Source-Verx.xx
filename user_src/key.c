@@ -16,6 +16,7 @@
 #include "uart.h"		// uart
 #include "LED.h"		// led
 #include "Motor_eeprom.h"	// Motor_eeprom
+#include "Motor_uart.h"		// Motor_uart
 
 
 void KEY_MODE_function(void);
@@ -23,6 +24,35 @@ void KEY_ENT_function(void);
 void KEY_UP_function(void);
 void KEY_DOWN_function(void);
 void Send_led_display(UINT8 led_PAGE,UINT8 *p0,UINT32 *p1);
+
+
+void DSW_switch_R_L(void)
+{
+  UINT8 d_switch=0,d_number[2];
+  
+    if(MOTOR_left_right_bit0)d_switch |= 1;
+    d_switch += d_switch; // left shift 1
+    if(MOTOR_left_right_bit1)d_switch |= 1;
+    if(DSW_switch_last!=d_switch){
+          UART_send_CMD=0x0103;
+          d_number[0]=d_switch;
+          UART_send_Motor(UART_send_CMD,0x02,0x01,d_number);       
+      DSW_switch_last=d_switch;
+    }
+    if(KEY_MODE_ABC==0)
+    {
+        if((d_switch==0)||(d_switch==3))
+        {
+           FLAG_SWITCH_stop_Motor=1;
+           LED_display_page("E04",0,0,0,0,0);
+        }
+        else if(FLAG_SWITCH_stop_Motor==1)
+        {
+           FLAG_SWITCH_stop_Motor=0;
+           LED_display_page("-  ",0,0,0,0,0);
+        }
+    }
+}
 
 void	_SwIn( uchar sw )
 {
@@ -94,7 +124,7 @@ void Key_scan(void)
 
 void KEY_MODE_function(void)
 {
-  UINT8 data_num;
+  UINT8 data_num,d_number[2];
   
   if((FLAG_KEY_MODE==0)||((FLAG_KEY_MODE==1)&&(TIME_MODE==0)))
   {
@@ -105,8 +135,17 @@ void KEY_MODE_function(void)
      
      if(KEY_Layer==0)   //page layer
      {
-        KEY_MODE_ABC++;
+        KEY_MODE_ABC++;        
         if(KEY_MODE_ABC>=3)KEY_MODE_ABC=0;
+        
+        if((KEY_MODE_ABC==1)&&(FLAG_SET_stop_Motor==0)){
+          FLAG_SET_stop_Motor=1;
+          UART_send_CMD=0x0102;
+          d_number[0]=Receiver_OUT_value;
+          UART_send_Motor(UART_send_CMD,0x02,0x01,d_number);          
+        }
+        if(KEY_MODE_ABC==0)FLAG_SET_stop_Motor=0;        
+        
         KEY_PAGE=1;
      }
      else if(KEY_Layer==1)  //data layer
@@ -139,6 +178,9 @@ void KEY_ENT_function(void)
          UnlockFlash( UNLOCK_EEPROM_TYPE );  //需要添加保存设置程序
          WriteByteToFLASH( addr_eeprom_sys+addr_eeprom_MOTOR+KEY_PAGE, Motor_MODE_B_data[KEY_PAGE]+1);   //save在EEPROM的Motor data比实际的要大1
          LockFlash( UNLOCK_EEPROM_TYPE );
+         
+         UART_send_CMD=0x0201;                                         //将更改的数据Uart到马达驱动MCU
+         UART_send_Motor(UART_send_CMD,0x02,50,Motor_MODE_B_data);
          
          for(i=0;i<5;i++)
          {

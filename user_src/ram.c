@@ -153,6 +153,20 @@ volatile union{
 	}BIT; 	
 }Motor_FLAG0;
 
+volatile union{
+	unsigned char BYTE;	
+	struct { 
+		unsigned char	Bit0:	1;
+		unsigned char	Bit1:	1;
+		unsigned char	Bit2:	1;
+		unsigned char	Bit3:	1;
+		unsigned char	Bit4:	1;
+		unsigned char	Bit5:	1;
+		unsigned char	Bit6:	1;
+		unsigned char	Bit7:	1;
+	}BIT; 	
+}Motor_FLAG1;
+
 UINT8  Receiver_vent;    //受信机换气联动ON/OFF
 UINT8  Inverters_OUT;    //继电器输出信号是否反向
 UINT16 TIME_SET_twinkling;
@@ -219,3 +233,7 @@ UINT8 Motor_MODE_B_data[def_MODE_B];
 UINT32 Motor_MODE_C_data[def_MODE_C];
 UINT8 TIME_MODE_B_save;
 UINT8 TIME_MODE;
+
+UINT8 DSW_switch_last;
+
+UINT16 UART_send_CMD;

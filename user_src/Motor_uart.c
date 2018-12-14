@@ -36,6 +36,8 @@ void UART_Handler(void)
 
 void Receiver_OUT_change_UART(void)
 {
+  UINT8 d_number[2];
+  
   if(Receiver_OUT_OPEN==1)Receiver_OUT_value=Receiver_OUT_value|0x01;
   else Receiver_OUT_value=Receiver_OUT_value&0xfe;
   if(Receiver_OUT_STOP==1)Receiver_OUT_value=Receiver_OUT_value|0x02;
@@ -44,14 +46,61 @@ void Receiver_OUT_change_UART(void)
   else Receiver_OUT_value=Receiver_OUT_value&0xfb;  
   if(Receiver_OUT_VENT==1)Receiver_OUT_value=Receiver_OUT_value|0x08;
   else Receiver_OUT_value=Receiver_OUT_value&0xf7;   
-  if(Receiver_OUT_value_last!=Receiver_OUT_value){
+  if((Receiver_OUT_value_last!=Receiver_OUT_value)&&(FLAG_SET_stop_Motor==0)&&(FLAG_SWITCH_stop_Motor==0)){
     Receiver_OUT_value_last=Receiver_OUT_value;
-    UART_send_Receiver_OUT();
+    
+    //UART_send_Receiver_OUT();
+    UART_send_CMD=0x0101;
+    d_number[0]=Receiver_OUT_value;
+    UART_send_Motor(UART_send_CMD,0x02,0x01,d_number);
+    
     if(Receiver_OUT_value==0x01)LED_display_page("'  ",0,0,0,0,0);
     else if(Receiver_OUT_value==0x02)LED_display_page("-  ",0,0,0,0,0);
     else if(Receiver_OUT_value==0x04)LED_display_page("_  ",0,0,0,0,0);
   }
 }
+
+
+void UART_Power_ON_send(void)
+{
+    UART_send_CMD=0x0201;
+    UART_send_Motor(UART_send_CMD,0x02,50,Motor_MODE_B_data);    
+}
+
+void UART_send_Motor(UINT16 d_COM,UINT8 d_addr,UINT8 d_length,UINT8 *d_data)
+{
+  UINT16  sum;
+  UINT8 i,d_num;
+  
+	Send_char(0xbb);   //0xbb
+        sum=0xbb;
+	Send_char(0x00);   //0x00
+        d_num=d_COM%256;
+        Send_char(d_num);   //命令低字节
+        sum= sum+d_num;
+        d_num=d_COM/256;
+        Send_char(d_num);  //命令高字节
+        sum= sum+d_num;
+        Send_char(d_addr);  //设备地址    
+        sum= sum+d_addr;
+        Send_char(0x00);             //返信情报
+        d_num=d_length%256;
+        Send_char(d_num);           //数据长度低字节
+        sum= sum+d_num;
+        d_num=d_length/256;
+        Send_char(d_num);           //数据长度高字节
+        sum= sum+d_num;
+        for(i=0;i<d_length;i++)
+        {
+          d_num=d_data[i];
+          Send_char(d_num);   //数据 DATA
+          sum= sum+d_num;
+          ClearWDT(); // Service the WDT
+        }
+        Send_char(sum%256);        //sum_L
+        Send_char(sum/256);        //sum_H  
+}
+
 
 void UART_send_Receiver_OUT(void)
 {
@@ -75,6 +124,8 @@ void UART_send_Receiver_OUT(void)
         Send_char(sum%256);        //sum_L
         Send_char(sum/256);        //sum_H  
 }
+
+
 void UART_ack(unsigned char ch)
 {
   UINT16  sum;

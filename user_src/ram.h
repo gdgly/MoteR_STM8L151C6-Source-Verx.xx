@@ -202,8 +202,34 @@ extern volatile union{
         #define		FLAG_KEY_DOWN		        Motor_FLAG0.BIT.Bit3
         #define		FLAG_KEY_UP	                Motor_FLAG0.BIT.Bit4
         #define		FLAG_KEY         	        Motor_FLAG0.BIT.Bit5
-//        #define		FLAG_ID_Login	        Motor_FLAG0.BIT.Bit6
-//        #define		FLAG_ID_Login_OK	Motor_FLAG0.BIT.Bit7
+        #define		FLAG_SET_stop_Motor	        Motor_FLAG0.BIT.Bit6
+        #define		FLAG_SWITCH_stop_Motor  	Motor_FLAG0.BIT.Bit7
+	//************************************************
+
+extern volatile union{
+	unsigned char BYTE;	
+	struct { 
+		unsigned char	Bit0:	1;
+		unsigned char	Bit1:	1;
+		unsigned char	Bit2:	1;
+		unsigned char	Bit3:	1;
+		unsigned char	Bit4:	1;
+		unsigned char	Bit5:	1;
+		unsigned char	Bit6:	1;
+		unsigned char	Bit7:	1;
+	}BIT; 	
+}Motor_FLAG1;
+	//************************************************
+	#define 	Motor_FLAG1_BYTE		Motor_FLAG1.BYTE	 
+	//------------------------------------------------
+//        #define		Motor_FG_10ms	                Motor_FLAG1.BIT.Bit0
+//        #define		FLAG_KEY_MODE	                Motor_FLAG1.BIT.Bit1
+//        #define		FLAG_KEY_ENT		        Motor_FLAG1.BIT.Bit2
+//        #define		FLAG_KEY_DOWN		        Motor_FLAG1.BIT.Bit3
+//        #define		FLAG_KEY_UP	                Motor_FLAG1.BIT.Bit4
+//        #define		FLAG_KEY         	        Motor_FLAG1.BIT.Bit5
+//        #define		FLAG_SET_stop_Motor	        Motor_FLAG1.BIT.Bit6
+//        #define		FLAG_SWITCH_stop_Motor  	Motor_FLAG1.BIT.Bit7
 	//************************************************
 
 extern UINT8  Receiver_vent;    //受信机换气联动ON/OFF
@@ -243,3 +269,7 @@ extern UINT8 Motor_MODE_B_data[def_MODE_B];
 extern UINT32 Motor_MODE_C_data[def_MODE_C];
 extern UINT8 TIME_MODE_B_save;
 extern UINT8 TIME_MODE;
+
+extern UINT8 DSW_switch_last;
+
+extern UINT16 UART_send_CMD;
