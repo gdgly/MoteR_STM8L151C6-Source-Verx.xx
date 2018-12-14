@@ -49,7 +49,7 @@
         </option>
         <option>
           <name>CSpyDDFFile</name>
-          <state>$TOOLKIT_DIR$\config\ddf\iostm8l151c6.ddf</state>
+          <state>$TOOLKIT_DIR$\config\ddf\iostm8l151k4.ddf</state>
         </option>
         <option>
           <name>CSpyEnableExtraOptions</name>
@@ -124,9 +124,9 @@
     </settings>
     <settings>
       <name>STICE_STM8</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>1</archiveVersion>
       <data>
-        <version>2</version>
+        <version>0</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -153,25 +153,13 @@
           <name>STiceUseSwim</name>
           <state>0</state>
         </option>
-        <option>
-          <name>STiceOptionBytesSetupFileOver</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>STiceOptionBytesSetupFile</name>
-          <state></state>
-        </option>
-        <option>
-          <name>STiceEraseMemory</name>
-          <state>0</state>
-        </option>
       </data>
     </settings>
     <settings>
       <name>STLINK_STM8</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>1</archiveVersion>
       <data>
-        <version>2</version>
+        <version>0</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -194,18 +182,6 @@
           <name>STlinkLogFile</name>
           <state>$PROJ_DIR$\cspycomm.log</state>
         </option>
-        <option>
-          <name>STlinkOptionBytesSetupFileOver</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>STlinkOptionBytesSetupFile</name>
-          <state></state>
-        </option>
-        <option>
-          <name>STlinkEraseMemory</name>
-          <state>0</state>
-        </option>
       </data>
     </settings>
     <debuggerPlugins>
@@ -222,12 +198,12 @@
         <loadFlag>0</loadFlag>
       </plugin>
       <plugin>
-        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
+        <file>$EW_DIR$\common\plugins\Stack\Stack.ENU.ewplugin</file>
         <loadFlag>1</loadFlag>
       </plugin>
       <plugin>
-        <file>$EW_DIR$\common\plugins\uCProbe\uCProbePlugin.ENU.ewplugin</file>
-        <loadFlag>0</loadFlag>
+        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
+        <loadFlag>1</loadFlag>
       </plugin>
     </debuggerPlugins>
   </configuration>
@@ -353,9 +329,9 @@
     </settings>
     <settings>
       <name>STICE_STM8</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>1</archiveVersion>
       <data>
-        <version>2</version>
+        <version>0</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -382,25 +358,13 @@
           <name>STiceUseSwim</name>
           <state>0</state>
         </option>
-        <option>
-          <name>STiceOptionBytesSetupFileOver</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>STiceOptionBytesSetupFile</name>
-          <state></state>
-        </option>
-        <option>
-          <name>STiceEraseMemory</name>
-          <state>0</state>
-        </option>
       </data>
     </settings>
     <settings>
       <name>STLINK_STM8</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>1</archiveVersion>
       <data>
-        <version>2</version>
+        <version>0</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -423,18 +387,6 @@
           <name>STlinkLogFile</name>
           <state>$PROJ_DIR$\cspycomm.log</state>
         </option>
-        <option>
-          <name>STlinkOptionBytesSetupFileOver</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>STlinkOptionBytesSetupFile</name>
-          <state></state>
-        </option>
-        <option>
-          <name>STlinkEraseMemory</name>
-          <state>0</state>
-        </option>
       </data>
     </settings>
     <debuggerPlugins>
@@ -451,12 +403,12 @@
         <loadFlag>0</loadFlag>
       </plugin>
       <plugin>
-        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
+        <file>$EW_DIR$\common\plugins\Stack\Stack.ENU.ewplugin</file>
         <loadFlag>1</loadFlag>
       </plugin>
       <plugin>
-        <file>$EW_DIR$\common\plugins\uCProbe\uCProbePlugin.ENU.ewplugin</file>
-        <loadFlag>0</loadFlag>
+        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
+        <loadFlag>1</loadFlag>
       </plugin>
     </debuggerPlugins>
   </configuration>

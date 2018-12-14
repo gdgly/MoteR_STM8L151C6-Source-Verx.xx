@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=1997227467
+Checksum=1600516877
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -76,6 +76,10 @@ Fmt9={W}0:d_BEEP_off	3	0
 Fmt10={W}0:data	3	0
 Fmt11={W}0:test_AGC	2	0
 Fmt12={W}0:test_RSSI	3	0
+[DataSample]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -108,3 +112,5 @@ A16=_ "F:\Source Code\bunka-s\MoteR_new Source\Bunka STM8L151C6 MoteR Source Ver
 A17=_ "F:\Source Code\bunka-s\MoteR_new Source\Bunka STM8L151C6 MoteR Source Ver1.0\user_src\main.c" ""
 Count=18
 SuppressDialog=1
+[DebuggerSettings]
+DisableInterruptsWhenStepping=0

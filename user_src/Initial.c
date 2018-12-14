@@ -225,11 +225,19 @@ void SysClock_Init( void ){ 				// 系统时钟（外部时钟）
 void beep_init( void )
 { 	
      //BEEP_CSR=0x4E; 
+    /*********2.08k******/
+//  BEEP_CSR2=0;
+//  BEEP_CSR2_BEEPDIV=3;
+//  BEEP_CSR2_BEEPSEL=1; 
+//  CLK_CBEEPR_CLKBEEPSEL0=1;
+//  CLK_CBEEPR_CLKBEEPSEL1=0;
+  
+  /*******2.7k******/
   BEEP_CSR2=0;
-  BEEP_CSR2_BEEPDIV=3;
-  BEEP_CSR2_BEEPSEL=1; 
+  BEEP_CSR2_BEEPDIV=5;
+  BEEP_CSR2_BEEPSEL=2; 
   CLK_CBEEPR_CLKBEEPSEL0=1;
-  CLK_CBEEPR_CLKBEEPSEL1=0;
+  CLK_CBEEPR_CLKBEEPSEL1=0;  
 }
 
 //===================Delayus()延时===============//    Crystal: 16M HSI
