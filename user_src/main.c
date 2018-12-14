@@ -70,6 +70,7 @@ void main(void)
     beep_init();
     dd_set_ADF7021_Power_on();
     
+    LED_display_page("   ",0,0,0,0,0);
     RF_test_mode();
     
     UART_Power_ON_send();

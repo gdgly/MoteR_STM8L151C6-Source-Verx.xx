@@ -278,6 +278,7 @@ extern UINT8 TIME_MODE;
 
 extern UINT8 DSW_switch_last;
 extern UINT8 Motor_Origin_data[3][4];
+extern UINT8 Motor_Place_data[6];
 
 extern UINT16 UART_send_CMD;
 

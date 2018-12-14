@@ -38,4 +38,11 @@ void Motor_eeprom_load(void)
        Motor_Origin_data[i][j]=xm;
        ClearWDT(); // Service the WDT
     }
+    
+    for(i=0;i<6;i++) 
+    {
+       xm = ReadByteEEPROM( addr_eeprom_sys+addr_eeprom_Place+i);
+       Motor_Place_data[i]=xm;
+       ClearWDT(); // Service the WDT   
+    }
 }

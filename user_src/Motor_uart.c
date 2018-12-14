@@ -21,7 +21,7 @@
 void UART_Handler(void)
 {
   uni_i uart_x;
-  UINT8 i,uart_num,d_num,uart_n[4];
+  UINT8 i,uart_num,d_num,uart_n[6];
   
   if(FLAG_UART_R!=0){
     if(UART1_DATA[4]==1){         //人机mcu（设备addr:1）收到其它设备的呼叫
@@ -31,16 +31,17 @@ void UART_Handler(void)
         uart_x.uc[0]=UART1_DATA[3];       //指令
         uart_x.uc[1]=UART1_DATA[2];
         switch(uart_x.ui){             //接收数据
-            case 0x8001:     
+            case 0x8001:     //PIC mcu 需要保存的原点、上限、下限位置
                         uart_num=UART1_DATA[8];
                         for(i=0;i<4;i++)uart_n[i]=UART1_DATA[9+i];
                         
                         if(uart_num==1){
-                           _ReqBuzzer(20,20,3);
+                           _ReqBuzzer(20,20,5);
                         }
                         else if((uart_num>1)&&(uart_num<5)){
-                           if((uart_num==2)||(uart_num==3))_ReqBuzzer(10,10,2);
-                           else if(uart_num==4)_ReqBuzzer(500,1,1);
+                           if(uart_num==2) _ReqBuzzer(10,10,1);
+                           else if(uart_num==3)_ReqBuzzer(10,10,3);
+                           else if(uart_num==4)_ReqBuzzer(300,1,1);
                            
                            d_num=uart_num-2;
                            UnlockFlash( UNLOCK_EEPROM_TYPE );  
@@ -54,6 +55,13 @@ void UART_Handler(void)
                         else if(uart_num==5){
                            _ReqBuzzer(10,10,8);
                         }                         
+                        break;
+                        
+            case 0x8002:     //PIC mcu 需要保存的断电时的数据，卷帘门位置信息  addr_eeprom_Place
+                        for(i=0;i<6;i++)uart_n[i]=UART1_DATA[8+i];
+                        UnlockFlash( UNLOCK_EEPROM_TYPE );
+                        for(i=0;i<6;i++)WriteByteToFLASH( addr_eeprom_sys+addr_eeprom_Place+i, uart_n[i]);
+                        LockFlash( UNLOCK_EEPROM_TYPE );
                         break;
             default:
                         break;  
@@ -112,6 +120,9 @@ void UART_Power_ON_send(void)
     }
     UART_send_CMD=0x0202;
     UART_send_Motor(UART_send_CMD,0x02,12,d_number);    
+    
+    UART_send_CMD=0x0203;
+    UART_send_Motor(UART_send_CMD,0x02,6,Motor_Place_data);     
 }
 
 void UART_send_Motor(UINT16 d_COM,UINT8 d_addr,UINT8 d_length,UINT8 *d_data)

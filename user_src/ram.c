@@ -236,6 +236,7 @@ UINT8 TIME_MODE;
 
 UINT8 DSW_switch_last;
 UINT8 Motor_Origin_data[3][4];
+UINT8 Motor_Place_data[6];
 
 UINT16 UART_send_CMD;
 

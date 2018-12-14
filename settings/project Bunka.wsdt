@@ -12,7 +12,7 @@
           
           
           
-        <Column0>218</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>68</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -52,14 +52,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\main.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>1138</SelStart><SelEnd>1148</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\key.c</Filename><XPos>0</XPos><YPos>243</YPos><SelStart>7624</SelStart><SelEnd>7643</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\ram.c</Filename><XPos>0</XPos><YPos>191</YPos><SelStart>6841</SelStart><SelEnd>6841</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\Pin_define.h</Filename><XPos>0</XPos><YPos>270</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><ActiveTab>3</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\main.c</Filename><XPos>0</XPos><YPos>47</YPos><SelStart>2140</SelStart><SelEnd>2140</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\uart.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\Motor_uart.c</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>1841</SelStart><SelEnd>1841</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\ID_Decode.c</Filename><XPos>0</XPos><YPos>213</YPos><SelStart>8776</SelStart><SelEnd>8776</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\key.c</Filename><XPos>0</XPos><YPos>368</YPos><SelStart>10809</SelStart><SelEnd>10809</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\ram.c</Filename><XPos>0</XPos><YPos>224</YPos><SelStart>8125</SelStart><SelEnd>8141</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\eeprom.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>1683</SelStart><SelEnd>1700</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\Motor_eeprom.c</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>1583</SelStart><SelEnd>1583</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\ram.h</Filename><XPos>0</XPos><YPos>217</YPos><SelStart>9239</SelStart><SelEnd>9255</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\user_src\eeprom.c</Filename><XPos>0</XPos><YPos>384</YPos><SelStart>13327</SelStart><SelEnd>13339</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-02af0740><key>iaridepm.enu1</key></Toolbar-02af0740></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>483</Bottom><Right>292</Right><x>-2</x><y>-2</y><xscreen>7</xscreen><yscreen>0</yscreen><sizeHorzCX>5968</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>250639</sizeVertCX><sizeVertCY>668044</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1175</Right><x>-2</x><y>-2</y><xscreen>1177</xscreen><yscreen>200</yscreen><sizeHorzCX>1003410</sizeHorzCX><sizeHorzCY>275482</sizeHorzCY><sizeVertCX>5968</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0041ff98><key>iaridepm.enu1</key></Toolbar-0041ff98></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>811</Bottom><Right>142</Right><x>-2</x><y>-2</y><xscreen>2</xscreen><yscreen>0</yscreen><sizeHorzCX>1042</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>75000</sizeVertCX><sizeVertCY>806548</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>152</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>154</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>152778</sizeHorzCY><sizeVertCX>1042</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

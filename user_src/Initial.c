@@ -12,7 +12,7 @@
 #include "ram.h"		// RAM定义
 #include "adf7021.h"		// 初始化ADF7021
 #include "uart.h"		// uart
-
+#include "LED.h"		// led
 
 void RAM_clean(void){						// 清除RAM 
 	asm("ldw X,#0");
@@ -89,45 +89,45 @@ CR1寄存器  输出 Output（1=推挽、0=OC）
        ADF7021_DATA_direc = Input;
        ADF7021_DATA_CR1=1;
        
-      HA_L_signal_direc = Input; // Input   HA 下限信号   低电平有效
-      HA_L_signal_CR1=1;
-      
-      HA_ERR_signal_direc = Input;// Input   HA 异常信号  低电平有效
-      HA_ERR_signal_CR1=1;
-      
-      HA_Sensor_signal_direc = Input;// Input   HA 传感器信号  低电平有效
-      HA_Sensor_signal_CR1=1;
-      
-      Receiver_Login_direc = Input;// Input   受信机登录键   低电平有效
-      Receiver_Login_CR1=1;
-      
-//      Receiver_Buzzer_direc = Output;// Output   受信机蜂鸣器  高电平有效
-//      Receiver_Buzzer_CR1=1;
-//      Receiver_Buzzer=0;
-      Receiver_vent_direc = Input;// Input   受信机换气联动ON/OFF
-      Receiver_vent_CR1=1;     
-           
-      PIN_BEEP_direc = Output;    // Output   蜂鸣器
-      PIN_BEEP_CR1 = 1;
-      PIN_BEEP=0;
-      
-      Receiver_LED_OUT_direc = Output;// Output   受信机继电器动作输出  高电平有效
-      Receiver_LED_OUT_CR1=1;
-      Receiver_LED_OUT=1;
-      
+//      HA_L_signal_direc = Input; // Input   HA 下限信号   低电平有效
+//      HA_L_signal_CR1=1;
+//      
+//      HA_ERR_signal_direc = Input;// Input   HA 异常信号  低电平有效
+//      HA_ERR_signal_CR1=1;
+//      
+//      HA_Sensor_signal_direc = Input;// Input   HA 传感器信号  低电平有效
+//      HA_Sensor_signal_CR1=1;
+//        
+////      Receiver_Buzzer_direc = Output;// Output   受信机蜂鸣器  高电平有效
+////      Receiver_Buzzer_CR1=1;
+////      Receiver_Buzzer=0;
+//      Receiver_vent_direc = Input;// Input   受信机换气联动ON/OFF
+//      Receiver_vent_CR1=1;     
+//
+//      Inverters_OUT_direc=Input;    // 输入   继电器输出信号反向   低电平有效
+//      Inverters_OUT_CR1=1; 
+      if(Inverters_OUT==1){FG_allow_out=1;FG_NOT_allow_out=0;}
+      else {FG_allow_out=0;FG_NOT_allow_out=1;}     
+//      
 //      Receiver_LED_TX_direc = Output;// Output   受信机送信指示  高电平有效
 //      Receiver_LED_TX_CR1=1;
-//      Receiver_LED_TX=0;
+//      Receiver_LED_TX=0;   
+//
+//      Receiver_LED_OUT_direc = Output;// Output   受信机继电器动作输出  高电平有效
+//      Receiver_LED_OUT_CR1=1;
+//      Receiver_LED_OUT=1;
+//            
+//      Receiver_LED_RX_direc = Output;// Output   受信机受信指示  高电平有效
+//      Receiver_LED_RX_CR1=1;
+//      Receiver_LED_RX=0;       
+       
+      Receiver_Login_direc = Input;// Input   受信机登录键   低电平有效
+      Receiver_Login_CR1=1;       
       
-      Receiver_LED_RX_direc = Output;// Output   受信机受信指示  高电平有效
-      Receiver_LED_RX_CR1=1;
-      Receiver_LED_RX=0;
-      
-      Inverters_OUT_direc=Input;    // 输入   继电器输出信号反向   低电平有效
-      Inverters_OUT_CR1=1; 
-      if(Inverters_OUT==1){FG_allow_out=1;FG_NOT_allow_out=0;}
-      else {FG_allow_out=0;FG_NOT_allow_out=1;}
-      
+      PIN_BEEP_direc = Output;    // Output   蜂鸣器
+      PIN_BEEP_CR1 = 1;
+      PIN_BEEP=0;      
+            
       Receiver_OUT_OPEN_direc = Output;  // Output   受信机继电器OPEN  高电平有效
       Receiver_OUT_OPEN_CR1=1;
       Receiver_OUT_OPEN=FG_NOT_allow_out;
@@ -150,6 +150,16 @@ CR1寄存器  输出 Output（1=推挽、0=OC）
       
       
       
+      MOTOR_left_right_bit0_direc=Input;   // Input   电机安装位置左右选择   低电平有效
+      MOTOR_left_right_bit0_CR1=1;
+      MOTOR_left_right_bit1_direc=Input;   // Input     电机安装位置左右选择  低电平有效
+      MOTOR_left_right_bit1_CR1=1;
+      PIN_KEY_DOWN_direc=Input;   // net key2   Input   
+      PIN_KEY_DOWN_CR1=1;
+      PIN_KEY_UP_direc=Input;   // net key4   输入
+      PIN_KEY_UP_CR1=1;
+      PIN_KEY_MODE_direc=Input;    // net key3   Input  
+      PIN_KEY_MODE_CR1=1;
       
       KEY_ENT_direc=Input;       // net key2   Input 
       KEY_ENT_CR1=1;
@@ -291,12 +301,13 @@ void RF_test_mode(void )
 	    if(TIMER1s==0){
 	      TIMER1s=500;
 	      Receiver_LED_RX=!Receiver_LED_RX;
+              LED_display_page("  .",0,0,0x80,500,1);
 	    }
 	  if(Tx_Rx_mode==3){    
             if(X_COUNT >= 1200){
               X_COUNT = 0;    
-	      if(X_ERR>=60)Receiver_LED_RX=0;
-	      else Receiver_LED_RX=1;
+	      if(X_ERR>=60){Receiver_LED_RX=0;LED_display_page("   ",0,0,0,0,0);}
+	      else {Receiver_LED_RX=1;LED_display_page("  .",0,0,0,0,0);}
               uart_data = (X_ERR/1000) + 48;//48;//（X_ERR/1000) + 48;
 	      Send_char(uart_data);
               X_ERR = X_ERR%1000;

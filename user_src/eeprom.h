@@ -42,6 +42,7 @@ void ID_learn(void);
                                                      //专门用于电机参数的存储，总块有192个数据区
 #define addr_eeprom_MOTOR	        0x340        //用于电机参数的mode B数据，50pcs
 #define addr_eeprom_Origin	        0x380        //用于卷帘门的原点、上限、下限，3*4pcs
+#define addr_eeprom_Place               0x390        //用于卷帘门的断电时位置存储
 
 
 
