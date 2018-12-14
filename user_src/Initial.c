@@ -22,9 +22,9 @@ void RAM_clean(void){						// Çå³ýRAM
 	asm("cpw X,#0x6ff");	
 	asm("jrule clear_ram");
         
-        LED_data_buf[0]=0x80;
-        LED_data_buf[1]=0x80;
-        LED_data_buf[2]=0x80;
+        LED_data_buf[0]=0x00;
+        LED_data_buf[1]=0x00;
+        LED_data_buf[2]=0x00;
 }  
 void WDT_init(void)
 {
@@ -233,19 +233,9 @@ unsigned char x;                   //ÑÓÊ±T=((timer-1)*0.313+2 us
 
 void RF_test_mode(void )
 {
-  UINT8 uart_data,Boot_i;
+  //UINT8 uart_data,Boot_i;
+   UINT8 uart_data;
 
-//  Receiver_LED_OUT=1;
-//  FG_beep_on=0;
-//  FG_beep_off=0;
-//  BEEP_CSR2_BEEPEN=1;
-//  for(Boot_i=0;Boot_i<2;Boot_i++){    
-//      for(time_3sec=0;time_3sec<6000;time_3sec++){
-//         Delayus(250);   //80us
-//         ClearWDT(); // Service the WDT
-//      }
-//      Receiver_LED_OUT=!Receiver_LED_OUT;    
-//  }
   BEEP_CSR2_BEEPEN=0;
   Receiver_LED_OUT=0;
   UART_pact_select=0;
@@ -325,27 +315,32 @@ void RF_test_mode(void )
 	  }
 	}
 	PC_PRG();	       // PC¿ØÖÆ 
-//	if((ADF7021_DATA_CLK==1)&&(FG_test_mode==1)&&(FG_test1==0)){
-//           ADF7021_DATA_tx=!ADF7021_DATA_tx;
-//           FG_test1=1;
-//        }
-//       if(ADF7021_DATA_CLK==0)FG_test1=0;
-             
+        
     }
     UART1_end();
     UART_pact_select=0;
 
+    
+    
   Receiver_LED_OUT=1;
   FG_beep_on=0;
   FG_beep_off=0;
   BEEP_CSR2_BEEPEN=1;
-  for(Boot_i=0;Boot_i<2;Boot_i++){    
-      for(time_3sec=0;time_3sec<6000;time_3sec++){
-         Delayus(250);   //80us
-         ClearWDT(); // Service the WDT
-      }
-      Receiver_LED_OUT=!Receiver_LED_OUT;    
+  
+//  for(Boot_i=0;Boot_i<2;Boot_i++){    
+//      for(time_3sec=0;time_3sec<6000;time_3sec++){
+//         Delayus(250);   //80us
+//         ClearWDT(); // Service the WDT
+//      }
+//      Receiver_LED_OUT=!Receiver_LED_OUT;    
+//  }
+  
+    
+  for(time_3sec=0;time_3sec<4000;time_3sec++){
+     Delayus(250);   //80us
+     ClearWDT(); // Service the WDT
   }
+  
   BEEP_CSR2_BEEPEN=0;
   Receiver_LED_OUT=0;
   

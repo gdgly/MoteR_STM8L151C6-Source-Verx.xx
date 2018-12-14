@@ -185,11 +185,11 @@
 
 #define MOTOR_left_right_bit0   PA_IDR_IDR4      // Input   电机安装位置左右选择   低电平有效
 #define MOTOR_left_right_bit1   PA_IDR_IDR5    // Input     电机安装位置左右选择  低电平有效
-#define KEY_DOWN                PA_IDR_IDR7    // net key2   Input   
-#define KEY_UP                  PA_IDR_IDR3    // net key4   输入
-#define KEY_MODE                PD_IDR_IDR6    // net key3   Input 
+#define PIN_KEY_DOWN                PA_IDR_IDR7    // net key2   Input   
+#define PIN_KEY_UP                  PA_IDR_IDR3    // net key4   输入
+#define PIN_KEY_MODE                PD_IDR_IDR6    // net key3   Input 
 
-#define KEY_ENT                 PD_IDR_IDR5    // net key1   Input 
+#define PIN_KEY_ENT                 PD_IDR_IDR5    // net key1   Input 
 #define KEY_BEAM_sensor         PA_IDR_IDR2    // net key5   Input
 #define LED_SEL1                PD_ODR_ODR7  // Output
 #define LED_SEL2                PC_ODR_ODR5  // Output

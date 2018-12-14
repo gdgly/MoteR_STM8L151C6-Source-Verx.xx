@@ -134,6 +134,25 @@ UINT8 UART_pact_select;
 
 
 
+
+
+
+
+
+volatile union{
+	unsigned char BYTE;	
+	struct { 
+		unsigned char	Bit0:	1;
+		unsigned char	Bit1:	1;
+		unsigned char	Bit2:	1;
+		unsigned char	Bit3:	1;
+		unsigned char	Bit4:	1;
+		unsigned char	Bit5:	1;
+		unsigned char	Bit6:	1;
+		unsigned char	Bit7:	1;
+	}BIT; 	
+}Motor_FLAG0;
+
 UINT8  Receiver_vent;    //受信机换气联动ON/OFF
 UINT8  Inverters_OUT;    //继电器输出信号是否反向
 UINT16 TIME_SET_twinkling;
@@ -153,4 +172,50 @@ UINT16 UART_RX_check_SUM;
 UINT8 Receiver_OUT_value;
 UINT8 Receiver_OUT_value_last;
 
-
+UINT8 Motor_10ms;
+UINT8 TIME_KEY;
+UINT8 m_KeyNew;
+UINT8 m_KeyOld;
+UINT8 m_ChatterCount;
+UINT8 KEY_Layer;
+UINT8 KEY_MODE_ABC;
+UINT8 KEY_PAGE;
+#define def_MODE_B  50    //这个数字需要注意，在ram.c里面也有预定义
+#define def_MODE_C  22   //这个数字需要注意，在ram.c里面也有预定义
+const UINT8 Motor_MODE_B_data_def[def_MODE_B]={0,    1,    1,    5,    1,    3,    0,    4,   255,  255, 
+                                                  //P01   P02   P03   P04   P05   P06   P07   P08   P09
+                                             0,    0,   255,  255,  255,  255,   0,    0,    0,    0, 
+                                          //P10   P11   P12   P13   P14   P15   P16   P17   P18   P19 
+                                             255,  2,    5,    5,    5,    1,    3,    2,    2,    10, 
+                                          //P20   P21   P22   P23   P24   P25   P26   P27   P28   P29
+                                             10,   5,    5,   255,  255,  255,  255,  255,  255,  255, 
+                                          //P30   P31   P32   P33   P34   P35   P36   P37   P38   P39
+                                             1,    1,    1,   255,  255,  255,  255,  255,  255,   0, 
+                                          //P90   P91   P92   P93   P94   P95   P96   P97   P98   P99
+                                      };   
+const UINT8 Motor_MODE_B_data_L[def_MODE_B]={0,    1,    1,    0,    1,    0,    0,    0,   255,  255,
+                                                //P01   P02   P03   P04   P05   P06   P07   P08   P09
+                                             0,    0,   255,  255,  255,  255,   0,    0,    0,    0, 
+                                          //P10   P11   P12   P13   P14   P15   P16   P17   P18   P19
+                                            255,   1,    0,    0,    0,    1,    1,    1,    1,    1, 
+                                          //P20   P21   P22   P23   P24   P25   P26   P27   P28   P29
+                                             1,    1,    1,   255,  255,  255,  255,  255,  255,  255, 
+                                          //P30   P31   P32   P33   P34   P35   P36   P37   P38   P39
+                                             0,    0,    0,   255,  255,  255,  255,  255,  255,   0, 
+                                          //P90   P91   P92   P93   P94   P95   P96   P97   P98   P99
+                                      };
+const UINT8 Motor_MODE_B_data_H[def_MODE_B]={0,    8,    4,    10,   2,    3,    15,   16,  255,  255,
+                                                //P01   P02   P03   P04   P05   P06   P07   P08   P09
+                                            15,   15,   255,  255,  255,  255,   6,    6,    6,    6,
+                                          //P10   P11   P12   P13   P14   P15   P16   P17   P18   P19
+                                            255,   2,   10,    10,   15,   3,    5,    3,    3,   10,
+                                          //P20   P21   P22   P23   P24   P25   P26   P27   P28   P29
+                                            10,   10,   10,   255,  255,  255,  255,  255,  255,  255, 
+                                          //P30   P31   P32   P33   P34   P35   P36   P37   P38   P39
+                                            1,     1,    1,   255,  255,  255,  255,  255,  255,   1, 
+                                          //P90   P91   P92   P93   P94   P95   P96   P97   P98   P99
+                                      };
+UINT8 Motor_MODE_B_data[def_MODE_B];
+UINT32 Motor_MODE_C_data[def_MODE_C];
+UINT8 TIME_MODE_B_save;
+UINT8 TIME_MODE;

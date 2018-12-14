@@ -1619,10 +1619,19 @@
       <name>$PROJ_DIR$\user_src\Initial.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\user_src\key.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\user_src\LED.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_src\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_src\Motor_eeprom.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\user_src\Motor_uart.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\user_src\ram.c</name>

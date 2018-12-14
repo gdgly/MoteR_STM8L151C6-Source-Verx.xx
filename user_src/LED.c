@@ -125,7 +125,7 @@ const unsigned char char_7segment[] ={
   0xff,       //2A       *
   0xff,       //2B       +
   0xff,       //2C       '
-  0xfc,       //2D       -   
+  0xbf,       //2D       -   
   0x7f,       //2E       .
   0xff,       //2F       /
     

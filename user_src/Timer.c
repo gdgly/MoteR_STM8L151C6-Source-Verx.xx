@@ -32,6 +32,12 @@ void TIM4_UPD_OVF(void){                             //725==1秒
 	  FG_10ms = 1;
     }
     
+    if(Motor_10ms)--Motor_10ms;
+    else {
+           Motor_10ms=10;
+           Motor_FG_10ms=1;
+           if(TIME_MODE_B_save)--TIME_MODE_B_save;
+    }
      LED_display_INT();
    
      TIM4_SR1_bit.UIF=0;						// 清除中断标记

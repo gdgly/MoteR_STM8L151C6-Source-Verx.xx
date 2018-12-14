@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=1464196596
+Checksum=-1706832595
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -63,12 +63,13 @@ Fmt0=ADF70XX_REG_T-whole_reg	1	0
 Fmt0=unsigned char[4]	1	0
 [watch_formats]
 Fmt0={W}0:COUNT_Receiver_Login	3	0
-Fmt1={W}0:LED_DP	3	0
-Fmt2={W}0:RAM_rssi_AVG	3	0
-Fmt3={W}0:UART_RX_check_SUM	3	0
-Fmt4={W}0:data	3	0
-Fmt5={W}0:test_AGC	2	0
-Fmt6={W}0:test_RSSI	3	0
+Fmt1={W}0:KEY_PAGE	3	0
+Fmt2={W}0:LED_DP	3	0
+Fmt3={W}0:RAM_rssi_AVG	3	0
+Fmt4={W}0:UART_RX_check_SUM	3	0
+Fmt5={W}0:data	3	0
+Fmt6={W}0:test_AGC	2	0
+Fmt7={W}0:test_RSSI	3	0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""

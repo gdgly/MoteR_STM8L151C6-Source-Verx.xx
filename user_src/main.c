@@ -30,7 +30,10 @@
 #include "ID_Decode.h"
 #include "eeprom.h"		// eeprom
 #include "uart.h"		// uart
+#include "Motor_uart.h"		// Motor_uart
+#include "Motor_eeprom.h"	// Motor_eeprom
 #include "LED.h"		// led
+#include "key.h"		// key
 
 /** @addtogroup STM8L15x_StdPeriph_Template
   * @{ 
@@ -59,6 +62,7 @@ void main(void)
     SysClock_Init();  
     InitialFlashReg();
     eeprom_sys_load();
+    Motor_eeprom_load();
     EXIT_init();
     TIM4_Init();
     UART1_INIT();  // UART1 for PC Software 
@@ -68,7 +72,7 @@ void main(void)
     
     RF_test_mode();
           
-    LED_display_page("P01",0,0,0,0,0);    
+    LED_display_page("-  ",0,0,0,0,0);   
         
     FLAG_APP_RX=1;
     dd_set_RX_mode();
@@ -84,6 +88,7 @@ void main(void)
     READ_RSSI_avg();
     UART_Handler();
     Receiver_OUT_change_UART();
+    Key_scan();
     
     if((RAM_rssi_AVG>=60)||(FG_Receiver_LED_RX==1))Receiver_LED_RX=1;   //26   35
     else if((RAM_rssi_AVG<=59)&&(FG_Receiver_LED_RX==0))Receiver_LED_RX=0;  //25  34

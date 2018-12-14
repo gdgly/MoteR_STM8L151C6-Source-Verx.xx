@@ -176,6 +176,36 @@ extern UINT8 UART_pact_select;
 
 
 
+
+
+
+
+extern volatile union{
+	unsigned char BYTE;	
+	struct { 
+		unsigned char	Bit0:	1;
+		unsigned char	Bit1:	1;
+		unsigned char	Bit2:	1;
+		unsigned char	Bit3:	1;
+		unsigned char	Bit4:	1;
+		unsigned char	Bit5:	1;
+		unsigned char	Bit6:	1;
+		unsigned char	Bit7:	1;
+	}BIT; 	
+}Motor_FLAG0;
+	//************************************************
+	#define 	Motor_FLAG0_BYTE		Motor_FLAG0.BYTE	 
+	//------------------------------------------------
+        #define		Motor_FG_10ms	                Motor_FLAG0.BIT.Bit0
+        #define		FLAG_KEY_MODE	                Motor_FLAG0.BIT.Bit1
+        #define		FLAG_KEY_ENT		        Motor_FLAG0.BIT.Bit2
+        #define		FLAG_KEY_DOWN		        Motor_FLAG0.BIT.Bit3
+        #define		FLAG_KEY_UP	                Motor_FLAG0.BIT.Bit4
+        #define		FLAG_KEY         	        Motor_FLAG0.BIT.Bit5
+//        #define		FLAG_ID_Login	        Motor_FLAG0.BIT.Bit6
+//        #define		FLAG_ID_Login_OK	Motor_FLAG0.BIT.Bit7
+	//************************************************
+
 extern UINT8  Receiver_vent;    //受信机换气联动ON/OFF
 extern UINT8  Inverters_OUT;    //继电器输出信号是否反向
 extern UINT16 TIME_SET_twinkling;
@@ -194,3 +224,22 @@ extern UINT16 UART_RX_check_SUM;
 
 extern UINT8 Receiver_OUT_value;
 extern UINT8 Receiver_OUT_value_last;
+
+#define d_Time50ms  3
+extern UINT8 Motor_10ms;
+extern UINT8 TIME_KEY;
+extern UINT8 m_KeyNew;
+extern UINT8 m_KeyOld;
+extern UINT8 m_ChatterCount;
+extern UINT8 KEY_Layer;
+extern UINT8 KEY_MODE_ABC;
+extern UINT8 KEY_PAGE;
+#define def_MODE_B  50    //这个数字需要注意，在ram.c里面也有预定义
+#define def_MODE_C  22    //这个数字需要注意，在ram.c里面也有预定义
+extern const UINT8 Motor_MODE_B_data_def[def_MODE_B];
+extern const UINT8 Motor_MODE_B_data_L[def_MODE_B];
+extern const UINT8 Motor_MODE_B_data_H[def_MODE_B];
+extern UINT8 Motor_MODE_B_data[def_MODE_B];
+extern UINT32 Motor_MODE_C_data[def_MODE_C];
+extern UINT8 TIME_MODE_B_save;
+extern UINT8 TIME_MODE;
