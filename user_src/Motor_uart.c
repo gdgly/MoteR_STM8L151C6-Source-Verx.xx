@@ -15,14 +15,50 @@
 #include "uart.h"		// uart
 #include "Motor_uart.h"		// Motor_uart
 #include "LED.h"		// led
-
+#include "key.h"		// key
 
 
 void UART_Handler(void)
 {
+  uni_i uart_x;
+  UINT8 i,uart_num,d_num,uart_n[4];
+  
   if(FLAG_UART_R!=0){
     if(UART1_DATA[4]==1){         //人机mcu（设备addr:1）收到其它设备的呼叫
-      if(FLAG_UART_R==1)UART_ack(0);   //接收数据完整，并校验
+      if(FLAG_UART_R==1)
+      {
+        UART_ack(0);   //接收数据完整，并校验
+        uart_x.uc[0]=UART1_DATA[3];       //指令
+        uart_x.uc[1]=UART1_DATA[2];
+        switch(uart_x.ui){             //接收数据
+            case 0x8001:     
+                        uart_num=UART1_DATA[8];
+                        for(i=0;i<4;i++)uart_n[i]=UART1_DATA[9+i];
+                        
+                        if(uart_num==1){
+                           _ReqBuzzer(20,20,3);
+                        }
+                        else if((uart_num>1)&&(uart_num<5)){
+                           if((uart_num==2)||(uart_num==3))_ReqBuzzer(10,10,2);
+                           else if(uart_num==4)_ReqBuzzer(500,1,1);
+                           
+                           d_num=uart_num-2;
+                           UnlockFlash( UNLOCK_EEPROM_TYPE );  
+                           for(i=0;i<4;i++)
+                           {
+                              WriteByteToFLASH( addr_eeprom_sys+addr_eeprom_Origin+d_num*4+i, uart_n[i]);   //save在EEPROM的卷帘门原点
+                              Motor_Origin_data[d_num][i]=uart_n[i];
+                           }
+                           LockFlash( UNLOCK_EEPROM_TYPE );                           
+                        }
+                        else if(uart_num==5){
+                           _ReqBuzzer(10,10,8);
+                        }                         
+                        break;
+            default:
+                        break;  
+        }
+      }
       else if(FLAG_UART_R==2)UART_ack(1);;  //接收数据校验失败
     }
     else {         //表示人机mcu（设备addr:1）送信给其它设备后的反馈情况
@@ -63,8 +99,19 @@ void Receiver_OUT_change_UART(void)
 
 void UART_Power_ON_send(void)
 {
+  UINT8 i,j,d_number[12];
+  
     UART_send_CMD=0x0201;
     UART_send_Motor(UART_send_CMD,0x02,50,Motor_MODE_B_data);    
+    
+    for(i=0;i<3;i++)
+      for(j=0;j<4;j++)
+    {
+       d_number[i*4+j]=Motor_Origin_data[i][j];
+       ClearWDT(); // Service the WDT
+    }
+    UART_send_CMD=0x0202;
+    UART_send_Motor(UART_send_CMD,0x02,12,d_number);    
 }
 
 void UART_send_Motor(UINT16 d_COM,UINT8 d_addr,UINT8 d_length,UINT8 *d_data)

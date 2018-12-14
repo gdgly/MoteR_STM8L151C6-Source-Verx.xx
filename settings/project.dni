@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=609588898
+Checksum=-1481396809
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -59,17 +59,23 @@ ShowArgs=0
 MixedMode=1
 [struct_types]
 Fmt0=ADF70XX_REG_T-whole_reg	1	0
+Fmt1=uni_i-ui	4	0
 [array_types]
-Fmt0=unsigned char[4]	1	0
+Fmt0=unsigned char[4]	3	0
 [watch_formats]
-Fmt0={W}0:COUNT_Receiver_Login	3	0
-Fmt1={W}0:KEY_PAGE	3	0
-Fmt2={W}0:LED_DP	3	0
-Fmt3={W}0:RAM_rssi_AVG	3	0
-Fmt4={W}0:UART_RX_check_SUM	3	0
-Fmt5={W}0:data	3	0
-Fmt6={W}0:test_AGC	2	0
-Fmt7={W}0:test_RSSI	3	0
+Fmt0={W}0:BASE_TIME_BEEP_off	3	0
+Fmt1={W}0:COUNT_Receiver_Login	3	0
+Fmt2={W}0:KEY_PAGE	3	0
+Fmt3={W}0:LED_DP	3	0
+Fmt4={W}0:RAM_rssi_AVG	3	0
+Fmt5={W}0:TIME_BEEP_freq	3	0
+Fmt6={W}0:TIME_BEEP_off	3	0
+Fmt7={W}0:UART_RX_check_SUM	3	0
+Fmt8={W}0:d_BEEP_freq	3	0
+Fmt9={W}0:d_BEEP_off	3	0
+Fmt10={W}0:data	3	0
+Fmt11={W}0:test_AGC	2	0
+Fmt12={W}0:test_RSSI	3	0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""

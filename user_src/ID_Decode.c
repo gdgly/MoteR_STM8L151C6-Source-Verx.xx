@@ -295,7 +295,9 @@ void ID_Decode_OUT(void)
 				Receiver_OUT_VENT=FG_NOT_allow_out;
                                 Receiver_OUT_STOP=FG_allow_out;
                                 if(TIMER1s<3550){Receiver_OUT_OPEN=FG_allow_out;
-                                                 Receiver_OUT_CLOSE=FG_allow_out;Receiver_BEEP();}
+                                                 Receiver_OUT_CLOSE=FG_allow_out;
+                                                 //Receiver_BEEP();
+                                                }
                                 break;
                      case 0x40:                            //×Ô¶¯ËÍÐÅ
 		                if((FG_auto_out==0)&&(Manual_override_TIMER==0)){

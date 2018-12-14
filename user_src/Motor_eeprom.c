@@ -21,7 +21,7 @@
 
 void Motor_eeprom_load(void)
 {
-  UINT8 i,xm;
+  UINT8 i,j,xm;
   
     for(i=0;i<def_MODE_B;i++)
     {
@@ -31,4 +31,11 @@ void Motor_eeprom_load(void)
        ClearWDT(); // Service the WDT
     }
     
+    for(i=0;i<3;i++)
+      for(j=0;j<4;j++)
+    {
+       xm = ReadByteEEPROM( addr_eeprom_sys+addr_eeprom_Origin+i*4+j );
+       Motor_Origin_data[i][j]=xm;
+       ClearWDT(); // Service the WDT
+    }
 }

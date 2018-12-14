@@ -39,7 +39,10 @@ void ID_learn(void);
 #define addr_eeprom_ID_PCS_L	        0x330
 #define addr_eeprom_ID_PCS_H	        0x331
 
-#define addr_eeprom_MOTOR	        0x340        //专门用于电机参数的存储，总块有192个数据区
+                                                     //专门用于电机参数的存储，总块有192个数据区
+#define addr_eeprom_MOTOR	        0x340        //用于电机参数的mode B数据，50pcs
+#define addr_eeprom_Origin	        0x380        //用于卷帘门的原点、上限、下限，3*4pcs
+
 
 
 

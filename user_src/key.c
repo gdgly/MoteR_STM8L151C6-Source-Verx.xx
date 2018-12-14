@@ -69,6 +69,28 @@ void Key_scan(void)
   if(Motor_FG_10ms==1)
   {
      Motor_FG_10ms=0;
+     
+     
+     if(TIME_BEEP_on){
+      --TIME_BEEP_on;
+      if(FG_beep_on_Motor==0){FG_beep_on_Motor=1;FG_beep_off_Motor=0;BEEP_CSR2_BEEPEN=1;
+                       }
+    }
+    else if(TIME_BEEP_off){
+      --TIME_BEEP_off;
+      if(FG_beep_off_Motor==0){FG_beep_off_Motor=1;FG_beep_on_Motor=0;BEEP_CSR2_BEEPEN=0;
+                       }
+    }
+    else if(TIME_BEEP_freq){
+      --TIME_BEEP_freq;
+      TIME_BEEP_on=BASE_TIME_BEEP_on;
+      TIME_BEEP_off=BASE_TIME_BEEP_off;
+      if(FG_beep_on_Motor==0){FG_beep_on_Motor=1;FG_beep_off_Motor=0;BEEP_CSR2_BEEPEN=1;
+                       }      
+    }    
+     
+     
+     
      if(TIME_MODE)--TIME_MODE;
 
 	m_KeyNew = 0xFF ;	
@@ -344,3 +366,26 @@ void Send_led_display(UINT8 led_PAGE,UINT8 *p0,UINT32 *p1)
      
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void _ReqBuzzer(UINT16 d_BEEP_on,UINT8 d_BEEP_off,UINT8 d_BEEP_freq)
+{
+     BASE_TIME_BEEP_on=d_BEEP_on;
+     BASE_TIME_BEEP_off=d_BEEP_off;
+     TIME_BEEP_on=BASE_TIME_BEEP_on;
+     TIME_BEEP_off=BASE_TIME_BEEP_off;
+     TIME_BEEP_freq=d_BEEP_freq-1;
+}
+

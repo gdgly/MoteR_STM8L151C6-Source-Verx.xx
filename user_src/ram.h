@@ -180,6 +180,12 @@ extern UINT8 UART_pact_select;
 
 
 
+
+  typedef union {
+        UINT16	ui ;
+	UINT8	uc[2] ;
+  }uni_i;
+
 extern volatile union{
 	unsigned char BYTE;	
 	struct { 
@@ -222,8 +228,8 @@ extern volatile union{
 	//************************************************
 	#define 	Motor_FLAG1_BYTE		Motor_FLAG1.BYTE	 
 	//------------------------------------------------
-//        #define		Motor_FG_10ms	                Motor_FLAG1.BIT.Bit0
-//        #define		FLAG_KEY_MODE	                Motor_FLAG1.BIT.Bit1
+        #define		FG_beep_on_Motor	                Motor_FLAG1.BIT.Bit0
+        #define		FG_beep_off_Motor	                Motor_FLAG1.BIT.Bit1
 //        #define		FLAG_KEY_ENT		        Motor_FLAG1.BIT.Bit2
 //        #define		FLAG_KEY_DOWN		        Motor_FLAG1.BIT.Bit3
 //        #define		FLAG_KEY_UP	                Motor_FLAG1.BIT.Bit4
@@ -271,5 +277,12 @@ extern UINT8 TIME_MODE_B_save;
 extern UINT8 TIME_MODE;
 
 extern UINT8 DSW_switch_last;
+extern UINT8 Motor_Origin_data[3][4];
 
 extern UINT16 UART_send_CMD;
+
+extern UINT16 TIME_BEEP_on;
+extern UINT8 TIME_BEEP_off;
+extern UINT16 BASE_TIME_BEEP_on;
+extern UINT8 BASE_TIME_BEEP_off;
+extern UINT8 TIME_BEEP_freq;

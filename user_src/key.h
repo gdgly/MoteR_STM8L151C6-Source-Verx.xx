@@ -10,3 +10,4 @@
 
 void Key_scan(void);
 void DSW_switch_R_L(void);
+void _ReqBuzzer(UINT16 d_BEEP_on,UINT8 d_BEEP_off,UINT8 d_BEEP_freq);
